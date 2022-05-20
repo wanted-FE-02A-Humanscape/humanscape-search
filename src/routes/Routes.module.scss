@@ -1,0 +1,28 @@
+@use '/src/styles/constants/colors';
+
+.app {
+  width: 100%;
+  height: 100vh;
+  background-color: colors.$HUMANS_BG;
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+    font-size: 25px;
+    font-weight: bolder;
+
+    h1 {
+      padding: 10px 0;
+    }
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

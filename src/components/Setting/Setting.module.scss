@@ -1,0 +1,11 @@
+.btnBox {
+  display: flex;
+  justify-content: flex-end;
+  width: 600px;
+  margin-bottom: 20px;
+
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+}

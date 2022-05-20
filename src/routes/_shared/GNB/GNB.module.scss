@@ -1,0 +1,56 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/position';
+
+.gnb {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 1040px;
+  height: 56px;
+  margin: 0 auto;
+  @media screen and (max-width: 1040px) {
+    width: 100%;
+  }
+
+  ul {
+    @include position.absolute(50% auto auto 20px);
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    color: colors.$HUMANS_LOGO;
+    transform: translateY(-50%);
+
+    svg {
+      width: 23px;
+      height: 23px;
+      margin-right: 10px;
+    }
+  }
+
+  .right {
+    @include position.absolute(50% 20px auto auto);
+    transform: translateY(-50%);
+
+    .menu {
+      padding: 0 16px;
+      margin-left: 20px;
+      font-size: 16px;
+      color: colors.$HUMANS_BLACK;
+      @media screen and (max-width: 1040px) {
+        display: none;
+      }
+    }
+
+    .hamburgerMenu {
+      display: none;
+      @media screen and (max-width: 1040px) {
+        display: flex;
+        justify-content: flex-end;
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+}

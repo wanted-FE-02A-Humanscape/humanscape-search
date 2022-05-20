@@ -1,0 +1,25 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/responsive';
+
+.wrapper {
+  width: 600px;
+  margin-top: 10px;
+  background-color: colors.$WHITE;
+  border-radius: 10px;
+
+  .loading {
+    padding: 13px;
+  }
+}
+@include responsive.mobileOnly {
+  .wrapper {
+    display: none;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .modal {
+    display: block;
+  }
+}

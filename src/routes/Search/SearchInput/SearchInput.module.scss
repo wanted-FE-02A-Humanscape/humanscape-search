@@ -1,0 +1,65 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/responsive';
+@use '/src/styles/mixins/position';
+
+.form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .searchBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 600px;
+    height: 60px;
+    padding-left: 15px;
+    overflow: hidden;
+    background-color: colors.$WHITE;
+    border-radius: 30px;
+
+    @include responsive.mobileOnly {
+      display: none;
+    }
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    input[type='search'] {
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: 600;
+
+      &::placeholder {
+        color: colors.$GRAYD;
+      }
+    }
+
+    button[type='submit'] {
+      @include flexbox.flexbox(center, center);
+      width: 100px;
+      height: 60px;
+      font-size: 18px;
+      font-weight: 700;
+      color: colors.$WHITE;
+      background-color: colors.$BLUE;
+    }
+  }
+
+  .activeMobile {
+    display: none;
+
+    @include responsive.mobileOnly {
+      @include flexbox.flexbox(between, center);
+      width: 90%;
+      height: 50px;
+      padding: 12px 20px;
+      background-color: colors.$WHITE;
+      border-radius: 30px;
+    }
+  }
+}
