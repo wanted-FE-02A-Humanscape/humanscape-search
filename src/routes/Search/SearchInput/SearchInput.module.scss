@@ -51,6 +51,10 @@
   .activeMobile {
     display: none;
 
+    svg {
+      width: 22px;
+      height: 22px;
+    }
     @include responsive.mobileOnly {
       @include flexbox.flexbox(between, center);
       width: 90%;
