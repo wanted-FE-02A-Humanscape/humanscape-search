@@ -1,12 +1,12 @@
 @use '/src/styles/constants/colors';
+@use '/src/styles/mixins/responsive';
 
 .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 800px;
-  height: 500px;
-  padding: 20px;
+  width: 560px;
+  padding: 40px;
   background-color: colors.$WHITE;
   border-radius: 5px;
 
@@ -18,13 +18,11 @@
       font-size: 25px;
     }
 
-    .content {
-      padding-left: 10px;
-    }
-
     input[type='number'] {
-      font-size: 20px;
-      border: 1px solid;
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+      border: 1px solid colors.$BLACK;
     }
   }
 
@@ -37,6 +35,18 @@
       font-size: 20px;
       border: 1px solid;
       border-radius: 5px;
+    }
+  }
+}
+
+@include responsive.mobileOnly {
+  .form {
+    width: 375px;
+
+    section {
+      h3 {
+        font-size: 18px;
+      }
     }
   }
 }

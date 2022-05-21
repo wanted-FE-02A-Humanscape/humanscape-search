@@ -3,9 +3,9 @@ import { atom } from 'recoil'
 export const settingAtom = atom({
   key: 'settingAtom',
   default: {
-    maxCnt: 10,
-    sickType: 1,
-    medTp: 2,
+    maxCnt: 10, // 표시되는 추천 검색어 최대개수
+    sickType: 1, // 1:3단상병, 2:4단상병
+    medTp: 2, // 	1:한방, 2:의과(양방)
   },
 })
 
@@ -21,5 +21,10 @@ export const focusedIdxAtom = atom({
 
 export const inputValueAtom = atom({
   key: 'inputVal',
+  default: '',
+})
+
+export const debounceValueAtom = atom({
+  key: 'deboVal',
   default: '',
 })

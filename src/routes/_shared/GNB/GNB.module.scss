@@ -38,18 +38,50 @@
       margin-left: 20px;
       font-size: 16px;
       color: colors.$HUMANS_BLACK;
-      @media screen and (max-width: 1040px) {
+      @media screen and (max-width: 768px) {
         display: none;
       }
     }
 
     .hamburgerMenu {
       display: none;
-      @media screen and (max-width: 1040px) {
+      @media screen and (max-width: 768px) {
         display: flex;
         justify-content: flex-end;
         width: 24px;
         height: 24px;
+      }
+    }
+  }
+
+  .mobileMenuButtonList {
+    display: none;
+    @media screen and (max-width: 768px) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+      height: 108px;
+    }
+
+    .clickArea {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 56px;
+      background-color: colors.$WHITE;
+
+      .menu {
+        padding: 0 16px;
+        margin-left: 20px;
+        font-size: 16px;
+        color: colors.$HUMANS_BLACK;
       }
     }
   }

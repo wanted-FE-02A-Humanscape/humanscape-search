@@ -12,37 +12,35 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: 600px;
-    height: 60px;
-    padding-left: 15px;
+    width: 660px;
+    height: 65px;
+    padding-left: 22px;
     overflow: hidden;
     background-color: colors.$WHITE;
-    border-radius: 30px;
-
+    border-radius: 42px;
     @include responsive.mobileOnly {
       display: none;
     }
 
     svg {
-      width: 30px;
-      height: 30px;
+      width: 22px;
+      height: 22px;
     }
 
     input[type='search'] {
-      width: 100%;
+      width: 520px;
       padding: 10px;
       font-size: 18px;
-      font-weight: 600;
 
       &::placeholder {
-        color: colors.$GRAYD;
+        color: colors.$HUMANS_GRAYB;
       }
     }
 
     button[type='submit'] {
       @include flexbox.flexbox(center, center);
       width: 100px;
-      height: 60px;
+      height: 65px;
       font-size: 18px;
       font-weight: 700;
       color: colors.$WHITE;

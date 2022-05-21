@@ -1,9 +1,12 @@
-import styles from './RecommendItem.module.scss'
-import { SearchIcon } from 'assets/svgs'
 import { ChangeEvent, useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+
+import { SearchIcon } from 'assets/svgs'
 import { focusedIdxAtom, inputValueAtom } from 'recoil/diseaseInfo'
+
 import HighlightedText from 'components/HighlightedText'
+
+import styles from './RecommendItem.module.scss'
 
 interface IData {
   sickCd: string
@@ -18,7 +21,7 @@ interface IProps {
 export default function RecommendItem({ item, index }: IProps) {
   const [checked, setChecked] = useState(false)
   const [focusedIdx, setFocusedIdx] = useRecoilState(focusedIdxAtom)
-  const [, setInputVal] = useRecoilState(inputValueAtom)
+  const setInputVal = useSetRecoilState(inputValueAtom)
 
   // 키보드 이동으로 검색창 반영
   useEffect(() => {
