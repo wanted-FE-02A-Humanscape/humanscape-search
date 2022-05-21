@@ -3,6 +3,8 @@ import { IDiseaseInfoAPIRes, Item } from 'types/diseaseInfo'
 
 const DISEASEINFO_BASE_URL = '/B551182/diseaseInfoService/getDissNameCodeList'
 
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy'
+
 interface Params {
   sickType: number
   medTp: number
@@ -11,7 +13,7 @@ interface Params {
 
 export const getDiseaseInfoApi = async (params: Params) => {
   try {
-    const res = await axios.get<IDiseaseInfoAPIRes>(DISEASEINFO_BASE_URL, {
+    const res = await axios.get<IDiseaseInfoAPIRes>(`${PROXY}${DISEASEINFO_BASE_URL}`, {
       params: {
         serviceKey: process.env.REACT_APP_API_KEY,
         pageNo: 1,
