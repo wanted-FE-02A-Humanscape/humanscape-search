@@ -9,9 +9,8 @@ export const settingAtom = atom({
   },
 })
 
-export const dataLengthAtom = atom({
-  // ItemsLength
-  key: 'dataLength',
+export const itemsLengthAtom = atom({
+  key: 'itemsLengthAtom',
   default: 0,
 })
 
@@ -25,8 +24,7 @@ export const inputValueAtom = atom({
   default: '',
 })
 
-export const debounceValueAtom = atom({
-  // searchParamValue
-  key: 'deboVal',
+export const searchParamValueAtom = atom({
+  key: 'searchParamValueAtom',
   default: '',
 })

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 
-import { debounceValueAtom } from 'recoil/diseaseInfo'
+import { searchParamValueAtom } from 'recoil/diseaseInfo'
 import { specialCharacterRegex } from 'utils/string'
 import { IItem } from 'types/diseaseInfo.d'
 
@@ -12,7 +12,7 @@ interface IProps {
 }
 
 function HighlightedText({ item }: IProps) {
-  const deboVal = useRecoilValue(debounceValueAtom)
+  const deboVal = useRecoilValue(searchParamValueAtom)
   const renderContent = useMemo(() => {
     const resultStr = deboVal.replace(specialCharacterRegex, (match) => `\\${match}`)
     const regex = new RegExp(`(${resultStr})`, 'gi')

@@ -1,16 +1,16 @@
 import { KeyboardEvent } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { dataLengthAtom, focusedIdxAtom } from 'recoil/diseaseInfo'
+import { itemsLengthAtom, focusedIdxAtom } from 'recoil/diseaseInfo'
 
 export default function useInputKeyControl() {
-  const length = useRecoilValue(dataLengthAtom)
+  const itemsLength = useRecoilValue(itemsLengthAtom)
   const [focusedIdx, setFocusedIdx] = useRecoilState(focusedIdxAtom)
 
   const handleKeyControl = (e: KeyboardEvent) => {
     if (!e.nativeEvent.isComposing) {
       switch (e.key) {
         case 'ArrowDown':
-          if (focusedIdx >= length - 1) {
+          if (focusedIdx >= itemsLength - 1) {
             setFocusedIdx(0)
             return
           }
@@ -18,7 +18,7 @@ export default function useInputKeyControl() {
           break
         case 'ArrowUp':
           if (focusedIdx <= 0) {
-            setFocusedIdx(length - 1)
+            setFocusedIdx(itemsLength - 1)
             return
           }
           setFocusedIdx(focusedIdx - 1)

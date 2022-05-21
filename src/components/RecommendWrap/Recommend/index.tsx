@@ -3,7 +3,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 import { createFuzzyMatcher, getDistance } from 'utils/string'
 import { getDiseaseInfoApi } from 'services/diseaseInfo.service'
-import { settingAtom, dataLengthAtom } from 'recoil/diseaseInfo'
+import { settingAtom, itemsLengthAtom } from 'recoil/diseaseInfo'
 
 import RecommendItem from './RecommendItem'
 
@@ -16,7 +16,7 @@ interface IProps {
 
 export default function Recommend({ value }: IProps) {
   const { maxCnt, sickType, medTp } = useRecoilValue(settingAtom)
-  const setLength = useSetRecoilState(dataLengthAtom)
+  const setLength = useSetRecoilState(itemsLengthAtom)
 
   const { data } = useQuery(
     ['getDiseaseInfoApi', sickType, maxCnt, medTp, value],
