@@ -19,7 +19,7 @@ export default function Search() {
         if (pattern.test(value)) setDeboVal(value)
         if (value === '') setDeboVal('')
       }, 1000),
-    []
+    [setDeboVal]
   )
 
   const handleClick = () => setIsMoblie((prev) => !prev)

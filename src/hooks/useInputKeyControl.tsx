@@ -23,6 +23,12 @@ export default function useInputKeyControl() {
           }
           setFocusedIdx(focusedIdx - 1)
           break
+        case 'ArrowLeft':
+          break
+        case 'ArrowRight':
+          break
+        default:
+          setFocusedIdx(-1)
       }
     }
   }
