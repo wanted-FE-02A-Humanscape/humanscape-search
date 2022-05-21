@@ -6,29 +6,31 @@
   height: 100vh;
   background-color: colors.$HUMANS_BG;
 
-  .title {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top: 80px;
-    font-size: 25px;
-    font-weight: bolder;
+  header {
+    .title {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 80px;
+      font-size: 25px;
+      font-weight: bolder;
 
-    h1 {
-      width: 400px;
-      font-size: 2.125rem;
-      font-weight: 700;
-      line-height: 1.6;
-      text-align: center;
-      letter-spacing: -0.018em;
-      white-space: pre-wrap;
-
-      @include responsive.mobileOnly {
-        width: 230px;
-        margin-bottom: 20px;
-        font-size: 1.25rem;
+      h1 {
+        width: 400px;
+        font-size: 2.125rem;
+        font-weight: 700;
+        line-height: 1.6;
         text-align: center;
+        letter-spacing: -0.018em;
+        white-space: pre-wrap;
+
+        @include responsive.mobileOnly {
+          width: 230px;
+          margin-bottom: 20px;
+          font-size: 1.25rem;
+          text-align: center;
+        }
       }
     }
   }

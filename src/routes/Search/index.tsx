@@ -6,9 +6,9 @@ import { debounceValueAtom } from 'recoil/diseaseInfo'
 
 import MobileModal from 'components/Modal/MobileModal'
 import ModalInput from './ModalInput'
-import SearchInput from './SearchInput'
 import Setting from 'components/Setting'
-import RecommendWrap from './RecommendWrap'
+import RecommendWrap from 'components/RecommendWrap/RecommendWrap'
+import SearchInput from 'components/SearchWrap'
 
 export default function Search() {
   const [globalSearchInput, setGlobalSearchInput] = useRecoilState(debounceValueAtom) // searchParamValue
