@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import { useRecoilState } from 'recoil'
-import { settingAtom } from 'recoil/diseaseInfo'
+import { useRecoilState, useResetRecoilState } from 'recoil'
+import { debounceValueAtom, inputValueAtom, settingAtom } from 'recoil/diseaseInfo'
 import styles from './SettingForm.module.scss'
 import Radio from 'components/Radio'
 
@@ -10,6 +10,9 @@ interface IProps {
 
 export default function SettingForm({ handleClose }: IProps) {
   const [searchSetting, setSearchSetting] = useRecoilState(settingAtom)
+  const resetInputVal = useResetRecoilState(inputValueAtom)
+  const debounceVal = useResetRecoilState(debounceValueAtom)
+
   const [maxCnt, setMaxCnt] = useState(searchSetting.maxCnt) // 표시되는 추천 검색어 최대개수
   const [sickType, setSickType] = useState(searchSetting.sickType) // 1:3단상병, 2:4단상병
   const [medTp, setMedTp] = useState(searchSetting.medTp) // 	1:한방, 2:의과(양방)
@@ -26,6 +29,9 @@ export default function SettingForm({ handleClose }: IProps) {
       medTp,
     })
     handleClose()
+    // search input value 초기화
+    resetInputVal()
+    debounceVal()
   }
 
   return (
