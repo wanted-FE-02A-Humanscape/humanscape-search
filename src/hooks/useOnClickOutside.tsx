@@ -1,9 +1,12 @@
-import { useEffect } from 'react'
+import { RefObject, useEffect } from 'react'
 
-const useOnClickOutside = (ref, handler) => {
+export default function useOnClickOutside<T extends HTMLElement = HTMLElement>(
+  ref: RefObject<T>,
+  handler: (event: Event) => void
+) {
   useEffect(() => {
-    const listener = (event) => {
-      if (!ref.current || ref.current.contains(event.target)) {
+    const listener = (event: Event) => {
+      if (!ref.current || ref.current.contains(event.target as Node)) {
         return
       }
       handler(event)
@@ -16,5 +19,3 @@ const useOnClickOutside = (ref, handler) => {
     }
   }, [ref, handler])
 }
-
-export default useOnClickOutside

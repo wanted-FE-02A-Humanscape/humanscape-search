@@ -2,7 +2,6 @@ import { useQuery } from 'react-query'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { settingAtom, dataLengthAtom } from 'recoil/diseaseInfo'
 import { getDiseaseInfoApi } from 'services/diseaseInfo.service'
-import styles from './RecommendItem/RecommendItem.module.scss'
 import { createFuzzyMatcher, getDistance } from 'utils/string'
 import RecommendItem from './RecommendItem'
 
@@ -11,21 +10,37 @@ interface IProps {
 }
 
 export default function Recommend({ value }: IProps) {
-  const { sickType, medTp } = useRecoilValue(settingAtom)
+  const { maxCnt, sickType, medTp } = useRecoilValue(settingAtom)
   const [, setLength] = useRecoilState(dataLengthAtom)
 
   const { data } = useQuery(
-    ['getDiseaseInfoApi', sickType, medTp, value],
+    ['getDiseaseInfoApi', sickType, medTp, maxCnt, value],
     () =>
       getDiseaseInfoApi({ searchText: value, medTp, sickType }).then((res) => {
         const regex = createFuzzyMatcher(value)
-        const tmp = res?.map((item) => ({
+        const dataToSort = res.map((item) => ({
           ...item,
-          // sickNm: getHighlightStr(regex, item.sickNm),
           distance: getDistance(regex, item.sickNm),
         }))
 
-        return tmp
+        dataToSort.sort((a, b) => {
+          if (!a.distance || !b.distance) return 0
+
+          // 정렬 우선 순위
+          // 문자 사이 거리 - 문자 첫 발견 인덱스 - 문자 길이
+          if (a.distance.between > b.distance.between) return 1
+          if (a.distance.between < b.distance.between) return -1
+
+          if (a.distance.offset > b.distance.offset) return 1
+          if (a.distance.offset < b.distance.offset) return -1
+
+          if (a.sickNm.length > b.sickNm.length) return 1
+          if (a.sickNm.length < b.sickNm.length) return -1
+
+          return 0
+        })
+
+        return dataToSort.slice(0, maxCnt)
       }),
     {
       refetchOnWindowFocus: true,
@@ -37,40 +52,6 @@ export default function Recommend({ value }: IProps) {
       },
     }
   )
-
-  // const regex = createFuzzyMatcher(value)
-  // const tmp = data?.map((item) => ({
-  //   ...item,
-  //   distance: getDistance(regex, item.sickNm),
-  // }))
-
-  // const tmp = [
-  //   {
-  //     sickNm: '간지염',
-  //     distance: { between: 1, offset: 0 },
-  //   },
-  //   {
-  //     sickNm: '나가는간염',
-  //     distance: { between: 0, offset: 3 },
-  //   },
-  //   {
-  //     sickNm: '간염정도',
-  //     distance: { between: 0, offset: 0 },
-  //   },
-  // ]
-
-  // tmp?.sort((a, b) => {
-  //   if (!a.distance || !b.distance) return 0
-
-  //   if (a.distance.between === b.distance.between) {
-  //     console.log('offset', a, b)
-  //     return a.distance.offset - b.distance.offset
-  //   }
-  //   console.log('btw', a, b)
-  //   return a.distance.between - b.distance.between
-  // })
-
-  // console.log(tmp)
 
   if (!data) return null
   if (data.length === 0) return <div className={styles.errMsg}>검색 결과가 없습니다.</div>
