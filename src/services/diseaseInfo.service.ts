@@ -31,6 +31,6 @@ export const getDiseaseInfoApi = async (params: Params) => {
     }
     return data
   } catch (error) {
-    throw new Error('server Error')
+    throw new Error((error as Error).message)
   }
 }

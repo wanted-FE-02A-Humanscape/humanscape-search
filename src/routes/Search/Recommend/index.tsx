@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
@@ -9,6 +8,7 @@ import { getDiseaseInfoApi } from 'services/diseaseInfo.service'
 import { settingAtom, dataLengthAtom } from 'recoil/diseaseInfo'
 
 import RecommendItem from './RecommendItem'
+import { useRef } from 'react'
 
 interface IProps {
   value: string
@@ -19,9 +19,12 @@ export default function Recommend({ value }: IProps) {
   const setLength = useSetRecoilState(dataLengthAtom)
 
   const { data } = useQuery(
-    ['getDiseaseInfoApi', sickType, medTp, maxCnt, value],
+    ['getDiseaseInfoApi', sickType, maxCnt, medTp, value],
     () =>
       getDiseaseInfoApi({ searchText: value, medTp, sickType }).then((res) => {
+        // eslint-disable-next-line no-console
+        console.log('api 호출')
+
         const regex = createFuzzyMatcher(value)
         const dataToSort = res.map((item) => ({
           ...item,
@@ -45,27 +48,20 @@ export default function Recommend({ value }: IProps) {
           return 0
         })
 
-        return dataToSort.slice(0, maxCnt)
+        const result = dataToSort.slice(0, maxCnt)
+        setLength(result.length)
+        return result
       }),
     {
       refetchOnWindowFocus: true,
       retry: 2,
       staleTime: 5 * 60 * 1000,
       suspense: true,
-      // onSuccess: (res) => {
-      //   setLength(res.length)
-      // },
     }
   )
-  // onSuccess에서 useEffect로 굳이 변경한이유: 셋팅에서 추천검색어 갯수를 변경할 때 쿼리에 있는거면 네트워크 요청이 안감.
-  // 그런데 우리는 네트워크 요청이 안간 경우에도 검색 결과의 length를 가져와야 해서 useEffect썼읍니다,,,,
-  useEffect(() => {
-    if (data) setLength(data.length)
-  }, [data, setLength])
 
   if (!data) return null
   if (data.length === 0) return <div className={styles.errMsg}>검색 결과가 없습니다.</div>
-
   return (
     <ul>
       {data.map((item, index: number) => (
