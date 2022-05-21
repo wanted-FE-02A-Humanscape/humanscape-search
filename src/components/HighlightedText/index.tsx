@@ -24,7 +24,7 @@ function HighlightedText({ item }: IProp) {
     })
   }, [deboVal, item.sickNm])
 
-  return <span>{renderContent}</span>
+  return <p>{renderContent}</p>
 }
 
 export default HighlightedText

@@ -4,6 +4,7 @@ import { settingAtom, dataLengthAtom } from 'recoil/diseaseInfo'
 import { getDiseaseInfoApi } from 'services/diseaseInfo.service'
 import { createFuzzyMatcher, getDistance } from 'utils/string'
 import RecommendItem from './RecommendItem'
+import styles from './Recommend.module.scss'
 
 interface IProps {
   value: string
@@ -54,7 +55,7 @@ export default function Recommend({ value }: IProps) {
   )
 
   if (!data) return null
-  if (data.length === 0) return <div>검색 결과가 없습니다.</div>
+  if (data.length === 0) return <p className={styles.noResults}>검색 결과가 없습니다.</p>
   return (
     <ul>
       {data.map((item, index: number) => (
