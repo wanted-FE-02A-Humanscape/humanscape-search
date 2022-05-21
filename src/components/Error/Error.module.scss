@@ -1,0 +1,12 @@
+@use '/src/styles/constants/colors';
+
+.error {
+  padding-top: 100px;
+  text-align: center;
+
+  h2 {
+    font-size: 30px;
+    line-height: 40px;
+    color: colors.$RED;
+  }
+}

@@ -1,8 +1,7 @@
 import { Suspense } from 'react'
-import styles from './RecommendWrap.module.scss'
-
 import Recommend from './Recommend'
 import { cx } from 'styles'
+import styles from './RecommendWrap.module.scss'
 
 interface IProps {
   isMoblie?: boolean
