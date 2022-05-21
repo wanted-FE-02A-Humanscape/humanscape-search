@@ -10,7 +10,7 @@ interface IProps {
 
 export default function SettingForm({ handleClose }: IProps) {
   const [searchSetting, setSearchSetting] = useRecoilState(settingAtom)
-  const [maxCnt, setMaxCnt] = useState(searchSetting.maxCnt)
+  const [maxCnt, setMaxCnt] = useState(searchSetting.maxCnt) // 표시되는 추천 검색어 최대개수
   const [sickType, setSickType] = useState(searchSetting.sickType) // 1:3단상병, 2:4단상병
   const [medTp, setMedTp] = useState(searchSetting.medTp) // 	1:한방, 2:의과(양방)
 
