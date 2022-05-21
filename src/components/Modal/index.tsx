@@ -1,5 +1,6 @@
-import styles from './Modal.module.scss'
 import Portal from 'components/Portal'
+
+import styles from './Modal.module.scss'
 
 interface IProps {
   children: React.ReactNode

@@ -1,9 +1,12 @@
-import styles from './RecommendItem.module.scss'
-import { SearchIcon } from 'assets/svgs'
 import { ChangeEvent, useEffect, useState } from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
+
+import { SearchIcon } from 'assets/svgs'
 import { focusedIdxAtom, inputValueAtom } from 'recoil/diseaseInfo'
+
 import HighlightedText from 'components/HighlightedText'
+
+import styles from './RecommendItem.module.scss'
 
 interface IData {
   sickCd: string

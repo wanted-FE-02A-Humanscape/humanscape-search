@@ -1,10 +1,12 @@
 import { useRef, useState } from 'react'
-import styles from './Setting.module.scss'
+
+import { SettingIcon } from 'assets/svgs'
+import useOnClickOutside from 'hooks/useOnClickOutside'
 
 import SettingForm from './SettingForm'
 import Modal from 'components/Modal'
-import useOnClickOutside from 'hooks/useOnClickOutside'
-import { SettingIcon } from 'assets/svgs'
+
+import styles from './Setting.module.scss'
 
 export default function Setting() {
   const [isOpen, setIsOpen] = useState(false)

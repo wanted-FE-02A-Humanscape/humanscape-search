@@ -1,11 +1,14 @@
+import { useEffect } from 'react'
 import { useQuery } from 'react-query'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { settingAtom, dataLengthAtom } from 'recoil/diseaseInfo'
-import { getDiseaseInfoApi } from 'services/diseaseInfo.service'
+
 import styles from './Recommend.module.scss'
+
 import { createFuzzyMatcher, getDistance } from 'utils/string'
+import { getDiseaseInfoApi } from 'services/diseaseInfo.service'
+import { settingAtom, dataLengthAtom } from 'recoil/diseaseInfo'
+
 import RecommendItem from './RecommendItem'
-import { useEffect } from 'react'
 
 interface IProps {
   value: string

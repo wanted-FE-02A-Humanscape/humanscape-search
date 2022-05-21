@@ -1,6 +1,7 @@
 import Search from './Search'
-import styles from './Routes.module.scss'
 import GNB from './_shared/GNB'
+
+import styles from './Routes.module.scss'
 
 export default function App() {
   return (

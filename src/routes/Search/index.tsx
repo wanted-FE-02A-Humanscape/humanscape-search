@@ -1,39 +1,40 @@
 import { useMemo, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import _ from 'lodash'
 
-import SearchInput from './SearchInput'
-import Setting from 'components/Setting/indes'
-import RecommendWrap from './RecommendWrap'
-import MobileModal from 'components/Modal/MoblieModal'
-import ModalInput from './ModalInput'
-import { useRecoilState } from 'recoil'
 import { debounceValueAtom } from 'recoil/diseaseInfo'
 
+import MobileModal from 'components/Modal/MobileModal'
+import ModalInput from './ModalInput'
+import SearchInput from './SearchInput'
+import Setting from 'components/Setting'
+import RecommendWrap from './RecommendWrap'
+
 export default function Search() {
-  const [deboVal, setDeboVal] = useRecoilState(debounceValueAtom)
-  const [isMoblie, setIsMoblie] = useState(false)
+  const [globalSearchInput, setGlobalSearchInput] = useRecoilState(debounceValueAtom)
+  const [isMobile, setIsMobile] = useState(false)
   const debounceChange = useMemo(
     () =>
       _.debounce((value) => {
         const pattern = /^[가-힣a-zA-Z0-9]+$/
-        if (pattern.test(value)) setDeboVal(value)
-        if (value === '') setDeboVal('')
+        if (pattern.test(value)) setGlobalSearchInput(value)
+        if (value === '') setGlobalSearchInput('')
       }, 1000),
-    [setDeboVal]
+    [setGlobalSearchInput]
   )
 
-  const handleClick = () => setIsMoblie((prev) => !prev)
+  const handleClick = () => setIsMobile((prev) => !prev)
 
   return (
     <>
       <Setting />
       <SearchInput debounceChange={debounceChange} handleOpen={handleClick} />
-      <RecommendWrap value={deboVal} />
+      <RecommendWrap value={globalSearchInput} />
 
-      {isMoblie && (
+      {isMobile && (
         <MobileModal>
           <ModalInput debounceChange={debounceChange} handleClose={handleClick} />
-          <RecommendWrap isMoblie={isMoblie} value={deboVal} />
+          <RecommendWrap isMobile={isMobile} value={globalSearchInput} />
         </MobileModal>
       )}
     </>

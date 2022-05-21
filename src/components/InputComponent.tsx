@@ -1,7 +1,8 @@
 import { ChangeEvent, Dispatch, SetStateAction, useEffect, useRef } from 'react'
 import { useRecoilState } from 'recoil'
-import { inputValueAtom } from 'recoil/diseaseInfo'
+
 import useInputKeyControl from 'hooks/useInputKeyControl'
+import { inputValueAtom } from 'recoil/diseaseInfo'
 
 interface IProps {
   debounceChange: _.DebouncedFunc<Dispatch<SetStateAction<string>>>

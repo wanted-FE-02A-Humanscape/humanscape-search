@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
+
 import { debounceValueAtom } from 'recoil/diseaseInfo'
 
 interface IProp {

@@ -1,8 +1,11 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useRecoilState } from 'recoil'
+
 import { settingAtom } from 'recoil/diseaseInfo'
-import styles from './SettingForm.module.scss'
+
 import Radio from 'components/Radio'
+
+import styles from './SettingForm.module.scss'
 
 interface IProps {
   handleClose: () => void
