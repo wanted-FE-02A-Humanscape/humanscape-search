@@ -54,7 +54,7 @@ export default function Recommend({ value }: IProps) {
   )
 
   if (!data) return null
-  if (data.length === 0) return <div className={styles.errMsg}>검색 결과가 없습니다.</div>
+  if (data.length === 0) return <div>검색 결과가 없습니다.</div>
   return (
     <ul>
       {data.map((item, index: number) => (
