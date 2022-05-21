@@ -1,8 +1,7 @@
 import { axios } from 'hooks/worker'
 import { IDiseaseInfoAPIRes, Item } from 'types/diseaseInfo'
 
-const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy'
-const DISEASEINFO_BASE_URL = `${PROXY}/getDissNameCodeList`
+const DISEASEINFO_BASE_URL = `getDissNameCodeList`
 
 interface Params {
   sickType: number
