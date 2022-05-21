@@ -1,4 +1,5 @@
-import Modal from '..'
+import Portal from 'components/Portal'
+// import Modal from '..'
 
 import styles from './MobileModal.module.scss'
 
@@ -8,8 +9,8 @@ interface IProps {
 
 export default function MobileModal({ children }: IProps) {
   return (
-    <Modal>
-      <div className={styles.wrapper}>{children}</div>
-    </Modal>
+    <Portal>
+      <div className={styles.mobileOverlay}>{children}</div>
+    </Portal>
   )
 }
