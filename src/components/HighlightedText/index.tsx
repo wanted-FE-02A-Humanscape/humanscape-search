@@ -11,11 +11,9 @@ interface Props {
 
 function HighlightedText({ item }: Props) {
   const deboVal = useRecoilValue(debounceValueAtom)
-
   const renderContent = useMemo(() => {
-    const regex = new RegExp(deboVal, 'i')
+    const regex = new RegExp(`(${deboVal})`, 'gi')
     const regexParts = item.sickNm.split(regex)
-
     return regexParts.filter(String).map((part, i) => {
       const key = `splitedText-${i}`
       return regex.test(part) ? (
