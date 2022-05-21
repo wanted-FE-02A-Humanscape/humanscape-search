@@ -1,14 +1,14 @@
 import { useQuery } from 'react-query'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 
-import styles from './Recommend.module.scss'
-
 import { createFuzzyMatcher, getDistance } from 'utils/string'
 import { getDiseaseInfoApi } from 'services/diseaseInfo.service'
 import { settingAtom, dataLengthAtom } from 'recoil/diseaseInfo'
 
 import RecommendItem from './RecommendItem'
-import { useRef } from 'react'
+
+import styles from './Recommend.module.scss'
+import { useEffect } from 'react'
 
 interface IProps {
   value: string
@@ -49,7 +49,7 @@ export default function Recommend({ value }: IProps) {
         })
 
         const result = dataToSort.slice(0, maxCnt)
-        setLength(result.length)
+
         return result
       }),
     {
@@ -60,8 +60,12 @@ export default function Recommend({ value }: IProps) {
     }
   )
 
+  useEffect(() => {
+    if (data) setLength(data.length)
+  }, [data, setLength])
+
   if (!data) return null
-  if (data.length === 0) return <div className={styles.errMsg}>검색 결과가 없습니다.</div>
+  if (data.length === 0) return <p className={styles.noResults}>검색 결과가 없습니다.</p>
   return (
     <ul>
       {data.map((item, index: number) => (

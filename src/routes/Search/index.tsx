@@ -16,8 +16,8 @@ export default function Search() {
   const debounceChange = useMemo(
     () =>
       _.debounce((value) => {
-        const pattern = /^[가-힣a-zA-Z0-9]+$/
-        if (pattern.test(value)) setGlobalSearchInput(value)
+        const pattern = /[^ㄱ-ㅎㅏ-ㅢ]/
+        if (pattern.test(value)) setGlobalSearchInput(value.trim())
         if (value === '') setGlobalSearchInput('')
       }, 1000),
     [setGlobalSearchInput]

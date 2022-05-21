@@ -3,7 +3,7 @@
 .btnBox {
   display: flex;
   justify-content: flex-end;
-  width: 660px;
+  width: 600px;
   margin-bottom: 20px;
   @include responsive.mobileOnly {
     width: 90%;
@@ -12,5 +12,11 @@
   .icon {
     width: 30px;
     height: 30px;
+  }
+}
+
+@include responsive.mobileOnly {
+  .btnBox {
+    width: 100%;
   }
 }

@@ -28,7 +28,7 @@ function HighlightedText({ item }: Props) {
     })
   }, [deboVal, item.sickNm])
 
-  return <span>{renderContent}</span>
+  return <p>{renderContent}</p>
 }
 
 export default HighlightedText
