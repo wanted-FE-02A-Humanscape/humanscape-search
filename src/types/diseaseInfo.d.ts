@@ -1,29 +1,29 @@
-interface Header {
-  resultCode: string
-  resultMsg: string
-}
-
-interface Item {
+export interface IItem {
   sickCd: string
   sickNm: string
 }
 
-interface Items {
-  item: Item[]
+export interface IItems {
+  item: IItem[]
 }
 
-interface Body {
-  items: Items
+interface IHeader {
+  resultCode: string
+  resultMsg: string
+}
+
+interface IBody {
+  items: IItems
   numOfRows: number
   pageNo: number
   totalCount: number
 }
 
-interface Response {
-  header: Header
-  body: Body
+interface IResponse {
+  header: IHeader
+  body: IBody
 }
 
 export interface IDiseaseInfoAPIRes {
-  response: Response
+  response: IResponse
 }

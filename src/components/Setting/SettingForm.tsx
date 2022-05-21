@@ -39,6 +39,7 @@ export default function SettingForm({ handleClose }: IProps) {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      <h2>추천 검색어 설정</h2>
       <section>
         <h3>추천 검색어 최대 개수(숫자만 입력)</h3>
         <div className={styles.content}>

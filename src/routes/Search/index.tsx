@@ -11,8 +11,8 @@ import Setting from 'components/Setting'
 import RecommendWrap from './RecommendWrap'
 
 export default function Search() {
-  const [globalSearchInput, setGlobalSearchInput] = useRecoilState(debounceValueAtom)
-  const [isMobile, setIsMobile] = useState(false)
+  const [globalSearchInput, setGlobalSearchInput] = useRecoilState(debounceValueAtom) // searchParamValue
+  const [isMobile, setIsMobile] = useState(false) // isMobileModalOpen
   const debounceChange = useMemo(
     () =>
       _.debounce((value) => {

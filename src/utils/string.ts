@@ -77,8 +77,4 @@ export const getDistance = (regex: RegExp, str: string) => {
   return { between, offset }
 }
 
-// const testData = ['간간간척추', '척척척추추추', '척추', '척간간추', '척추나라', '척무추']
-
-// const regex = createFuzzyMatcher('척추')
-// const tmp = getHighlightStr(regex, '간간간척나추')
-// const tmp2 = getDistance(regex, '포나척리간요추')
+export const specialCharacterRegex = /[\\{\\}\\[\]\\/?.,;:|\\)*~`!^\-_+<>@\\#$%&\\\\=\\(\\'\\"]/g

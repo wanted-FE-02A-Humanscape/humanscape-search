@@ -2,17 +2,20 @@ import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 
 import { debounceValueAtom } from 'recoil/diseaseInfo'
-import { Item } from 'types/diseaseInfo'
+import { specialCharacterRegex } from 'utils/string'
+import { IItem } from 'types/diseaseInfo.d'
+
 import styles from './HighlightedText.module.scss'
 
-interface Props {
-  item: Item
+interface IProps {
+  item: IItem
 }
 
-function HighlightedText({ item }: Props) {
+function HighlightedText({ item }: IProps) {
   const deboVal = useRecoilValue(debounceValueAtom)
   const renderContent = useMemo(() => {
-    const regex = new RegExp(`(${deboVal})`, 'gi')
+    const resultStr = deboVal.replace(specialCharacterRegex, (match) => `\\${match}`)
+    const regex = new RegExp(`(${resultStr})`, 'gi')
     const regexParts = item.sickNm.split(regex)
     return regexParts.filter(String).map((part, i) => {
       const key = `splitedText-${i}`
