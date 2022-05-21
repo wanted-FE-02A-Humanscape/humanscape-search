@@ -14,7 +14,7 @@ export default function Recommend({ value }: IProps) {
   const [, setLength] = useRecoilState(dataLengthAtom)
 
   const { data } = useQuery(
-    ['getDiseaseInfoApi', sickType, medTp, maxCnt, value],
+    ['getDiseaseInfoApi', sickType, maxCnt, medTp, value],
     () =>
       getDiseaseInfoApi({ searchText: value, medTp, sickType }).then((res) => {
         const regex = createFuzzyMatcher(value)
@@ -40,16 +40,15 @@ export default function Recommend({ value }: IProps) {
           return 0
         })
 
-        return dataToSort.slice(0, maxCnt)
+        const result = dataToSort.slice(0, maxCnt)
+        setLength(result.length)
+        return result
       }),
     {
       refetchOnWindowFocus: true,
       retry: 2,
       staleTime: 5 * 60 * 1000,
       suspense: true,
-      onSuccess: (res) => {
-        setLength(res.length)
-      },
     }
   )
 
