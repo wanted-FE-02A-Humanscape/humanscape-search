@@ -1,8 +1,8 @@
 import { ErrorBoundary } from 'react-error-boundary'
 
 import Search from './Search'
-import GNB from './_shared/GNB'
 import Error from 'components/Error'
+import GNB from 'components/GNB'
 
 import styles from './Routes.module.scss'
 
