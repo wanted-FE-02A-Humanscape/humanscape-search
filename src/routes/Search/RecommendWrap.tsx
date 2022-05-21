@@ -1,7 +1,8 @@
 import { Suspense } from 'react'
-import styles from './RecommendWrap.module.scss'
 
 import Recommend from './Recommend'
+
+import styles from './RecommendWrap.module.scss'
 import { cx } from 'styles'
 
 interface IProps {

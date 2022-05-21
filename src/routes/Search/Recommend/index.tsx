@@ -1,8 +1,10 @@
 import { useQuery } from 'react-query'
 import { useRecoilValue, useRecoilState } from 'recoil'
-import { settingAtom, dataLengthAtom } from 'recoil/diseaseInfo'
-import { getDiseaseInfoApi } from 'services/diseaseInfo.service'
+
 import { createFuzzyMatcher, getDistance } from 'utils/string'
+import { getDiseaseInfoApi } from 'services/diseaseInfo.service'
+import { settingAtom, dataLengthAtom } from 'recoil/diseaseInfo'
+
 import RecommendItem from './RecommendItem'
 
 interface IProps {

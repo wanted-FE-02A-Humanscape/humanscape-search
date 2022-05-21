@@ -1,9 +1,12 @@
 import { Dispatch, SetStateAction } from 'react'
-import styles from './SearchInput.module.scss'
-import { SearchIcon } from 'assets/svgs'
 import { useRecoilValue } from 'recoil'
+
+import { SearchIcon } from 'assets/svgs'
 import { inputValueAtom } from 'recoil/diseaseInfo'
+
 import InputComponent from 'components/InputComponent'
+
+import styles from './SearchInput.module.scss'
 
 interface IProps {
   debounceChange: _.DebouncedFunc<Dispatch<SetStateAction<string>>>

@@ -1,7 +1,10 @@
 import { Dispatch, SetStateAction } from 'react'
-import styles from './ModalInput.module.scss'
+
 import { SearchIcon, ArrowIcon } from 'assets/svgs'
+
 import InputComponent from 'components/InputComponent'
+
+import styles from './ModalInput.module.scss'
 
 interface IProps {
   debounceChange: _.DebouncedFunc<Dispatch<SetStateAction<string>>>
