@@ -1,7 +1,7 @@
 import { atom } from 'recoil'
 
 export const settingAtom = atom({
-  key: 'settingAtom',
+  key: 'setting',
   default: {
     maxCnt: 10, // 표시되는 추천 검색어 최대개수
     sickType: 1, // 1:3단상병, 2:4단상병
@@ -9,8 +9,8 @@ export const settingAtom = atom({
   },
 })
 
-export const dataLengthAtom = atom({
-  key: 'dataLength',
+export const itemsLengthAtom = atom({
+  key: 'itemsLengthAtom',
   default: 0,
 })
 
@@ -24,7 +24,7 @@ export const inputValueAtom = atom({
   default: '',
 })
 
-export const debounceValueAtom = atom({
-  key: 'deboVal',
+export const searchParamValueAtom = atom({
+  key: 'searchParamValueAtom',
   default: '',
 })

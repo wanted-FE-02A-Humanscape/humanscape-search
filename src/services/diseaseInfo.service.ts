@@ -1,17 +1,16 @@
 import { axios } from 'hooks/worker'
-import { IDiseaseInfoAPIRes, Item } from 'types/diseaseInfo'
+import { IDiseaseInfoAPIRes, IItem } from 'types/diseaseInfo.d'
 
 const DISEASEINFO_BASE_URL = '/B551182/diseaseInfoService/getDissNameCodeList'
-
 const PROXY = window.location.hostname === 'localhost' ? DISEASEINFO_BASE_URL : '/proxy'
 
-interface Params {
+interface IParams {
   sickType: number
   medTp: number
   searchText: string
 }
 
-export const getDiseaseInfoApi = async (params: Params) => {
+export const getDiseaseInfoApi = async (params: IParams) => {
   try {
     const res = await axios.get<IDiseaseInfoAPIRes>(`${PROXY}`, {
       params: {
@@ -28,7 +27,7 @@ export const getDiseaseInfoApi = async (params: Params) => {
     if (totalCount === 0) return []
 
     if (totalCount === 1) {
-      const emptyData: Item[] = []
+      const emptyData: IItem[] = []
       return emptyData.concat(data)
     }
     return data
