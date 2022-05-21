@@ -1,7 +1,20 @@
 @use '/src/styles/constants/colors';
+@use '/src/styles/mixins/responsive';
+@use '/src/styles/mixins/flexbox';
 
-.wrapper {
+.mobileOverlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
   width: 100%;
   height: 100%;
+  background-color: colors.$OVERLAY;
   background-color: colors.$WHITE;
+  transform: translate(-50%, -50%);
+  backdrop-filter: blur(5px);
+
+  @include responsive.mobileOnly {
+    display: block;
+  }
 }
