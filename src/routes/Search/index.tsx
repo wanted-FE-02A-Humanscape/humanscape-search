@@ -12,18 +12,18 @@ import RecommendWrap from './RecommendWrap'
 
 export default function Search() {
   const [globalSearchInput, setGlobalSearchInput] = useRecoilState(debounceValueAtom)
-  const [isMoblie, setIsMoblie] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const debounceChange = useMemo(
     () =>
       _.debounce((value) => {
-        const pattern = /^[가-힣a-zA-Z0-9]+$/
-        if (pattern.test(value)) setGlobalSearchInput(value)
+        const pattern = /[^ㄱ-ㅎㅏ-ㅢ]/
+        if (pattern.test(value)) setGlobalSearchInput(value.trim())
         if (value === '') setGlobalSearchInput('')
       }, 1000),
     [setGlobalSearchInput]
   )
 
-  const handleClick = () => setIsMoblie((prev) => !prev)
+  const handleClick = () => setIsMobile((prev) => !prev)
 
   return (
     <>
@@ -31,10 +31,10 @@ export default function Search() {
       <SearchInput debounceChange={debounceChange} handleOpen={handleClick} />
       <RecommendWrap value={globalSearchInput} />
 
-      {isMoblie && (
+      {isMobile && (
         <MobileModal>
           <ModalInput debounceChange={debounceChange} handleClose={handleClick} />
-          <RecommendWrap isMoblie={isMoblie} value={globalSearchInput} />
+          <RecommendWrap isMobile={isMobile} value={globalSearchInput} />
         </MobileModal>
       )}
     </>

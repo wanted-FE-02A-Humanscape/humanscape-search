@@ -4,14 +4,21 @@
 
 .wrapper {
   width: 660px;
+  max-height: 440px;
   padding: 16px 0;
   margin-top: 8px;
   overflow: hidden;
+  overflow: auto;
   background-color: colors.$WHITE;
   border-radius: 20px;
 
   .loading {
-    padding: 25px;
+    padding: 15px;
+    padding: 5px 24px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #6a737b;
+    letter-spacing: -0.018em;
   }
 
   h3 {
@@ -26,6 +33,7 @@
   .wrapper {
     display: none;
     width: 100%;
+    max-height: 100%;
     margin-top: 0;
   }
 

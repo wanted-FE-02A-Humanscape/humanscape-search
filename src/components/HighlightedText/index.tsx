@@ -2,17 +2,14 @@ import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
 
 import { debounceValueAtom } from 'recoil/diseaseInfo'
+import { Item } from 'types/diseaseInfo'
+import styles from './HighlightedText.module.scss'
 
-interface IProp {
-  item: IData
+interface Props {
+  item: Item
 }
 
-interface IData {
-  sickCd: string
-  sickNm: string
-}
-
-function HighlightedText({ item }: IProp) {
+function HighlightedText({ item }: Props) {
   const deboVal = useRecoilValue(debounceValueAtom)
 
   const renderContent = useMemo(() => {
@@ -21,11 +18,17 @@ function HighlightedText({ item }: IProp) {
 
     return regexParts.filter(String).map((part, i) => {
       const key = `splitedText-${i}`
-      return regex.test(part) ? <mark key={key}>{part}</mark> : <span key={key}>{part}</span>
+      return regex.test(part) ? (
+        <mark className={styles.mark} key={key}>
+          {part}
+        </mark>
+      ) : (
+        <span key={key}>{part}</span>
+      )
     })
   }, [deboVal, item.sickNm])
 
-  return <span>{renderContent}</span>
+  return <p>{renderContent}</p>
 }
 
 export default HighlightedText

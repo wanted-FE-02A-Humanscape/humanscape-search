@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query'
-import { useRecoilValue, useRecoilState } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
 
 import { createFuzzyMatcher, getDistance } from 'utils/string'
 import { getDiseaseInfoApi } from 'services/diseaseInfo.service'
@@ -7,18 +7,24 @@ import { settingAtom, dataLengthAtom } from 'recoil/diseaseInfo'
 
 import RecommendItem from './RecommendItem'
 
+import styles from './Recommend.module.scss'
+import { useEffect } from 'react'
+
 interface IProps {
   value: string
 }
 
 export default function Recommend({ value }: IProps) {
   const { maxCnt, sickType, medTp } = useRecoilValue(settingAtom)
-  const [, setLength] = useRecoilState(dataLengthAtom)
+  const setLength = useSetRecoilState(dataLengthAtom)
 
   const { data } = useQuery(
-    ['getDiseaseInfoApi', sickType, medTp, maxCnt, value],
+    ['getDiseaseInfoApi', sickType, maxCnt, medTp, value],
     () =>
       getDiseaseInfoApi({ searchText: value, medTp, sickType }).then((res) => {
+        // eslint-disable-next-line no-console
+        console.log('api 호출')
+
         const regex = createFuzzyMatcher(value)
         const dataToSort = res.map((item) => ({
           ...item,
@@ -42,21 +48,24 @@ export default function Recommend({ value }: IProps) {
           return 0
         })
 
-        return dataToSort.slice(0, maxCnt)
+        const result = dataToSort.slice(0, maxCnt)
+
+        return result
       }),
     {
       refetchOnWindowFocus: true,
       retry: 2,
       staleTime: 5 * 60 * 1000,
       suspense: true,
-      onSuccess: (res) => {
-        setLength(res.length)
-      },
     }
   )
 
+  useEffect(() => {
+    if (data) setLength(data.length)
+  }, [data, setLength])
+
   if (!data) return null
-  if (data.length === 0) return <div>검색 결과가 없습니다.</div>
+  if (data.length === 0) return <p className={styles.noResults}>검색 결과가 없습니다.</p>
   return (
     <ul>
       {data.map((item, index: number) => (

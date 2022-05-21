@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, FormEvent, SetStateAction } from 'react'
 import { useRecoilValue } from 'recoil'
 
 import { SearchIcon } from 'assets/svgs'
@@ -16,8 +16,12 @@ interface IProps {
 export default function SearchInput({ debounceChange, handleOpen }: IProps) {
   const inputVal = useRecoilValue(inputValueAtom)
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+  }
+
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.searchBox}>
         <SearchIcon />
         <InputComponent debounceChange={debounceChange} />
