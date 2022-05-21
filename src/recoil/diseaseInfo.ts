@@ -23,3 +23,8 @@ export const inputValueAtom = atom({
   key: 'inputVal',
   default: '',
 })
+
+export const debounceValueAtom = atom({
+  key: 'deboVal',
+  default: '',
+})

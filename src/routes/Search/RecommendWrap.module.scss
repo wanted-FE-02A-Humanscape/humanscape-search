@@ -3,13 +3,23 @@
 @use '/src/styles/mixins/responsive';
 
 .wrapper {
-  width: 600px;
-  margin-top: 10px;
+  width: 660px;
+  padding: 16px 0;
+  margin-top: 8px;
+  overflow: hidden;
   background-color: colors.$WHITE;
-  border-radius: 10px;
+  border-radius: 20px;
 
   .loading {
-    padding: 13px;
+    padding: 25px;
+  }
+
+  h3 {
+    padding: 8px 24px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: colors.$HUMANS_GRAYA;
+    letter-spacing: -0.018em;
   }
 }
 @include responsive.mobileOnly {

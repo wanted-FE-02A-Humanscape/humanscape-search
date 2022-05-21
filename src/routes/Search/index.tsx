@@ -6,9 +6,11 @@ import Setting from 'components/Setting/indes'
 import RecommendWrap from './RecommendWrap'
 import MobileModal from 'components/Modal/MoblieModal'
 import ModalInput from './ModalInput'
+import { useRecoilState } from 'recoil'
+import { debounceValueAtom } from 'recoil/diseaseInfo'
 
 export default function Search() {
-  const [deboVal, setDeboVal] = useState('')
+  const [deboVal, setDeboVal] = useRecoilState(debounceValueAtom)
   const [isMoblie, setIsMoblie] = useState(false)
   const debounceChange = useMemo(
     () =>

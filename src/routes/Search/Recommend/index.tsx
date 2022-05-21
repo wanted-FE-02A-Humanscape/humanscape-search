@@ -2,7 +2,7 @@ import { useQuery } from 'react-query'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { settingAtom, dataLengthAtom } from 'recoil/diseaseInfo'
 import { getDiseaseInfoApi } from 'services/diseaseInfo.service'
-import { Item } from 'types/diseaseInfo'
+import styles from './RecommendItem/RecommendItem.module.scss'
 import { createFuzzyMatcher, getDistance } from 'utils/string'
 import RecommendItem from './RecommendItem'
 
@@ -73,7 +73,7 @@ export default function Recommend({ value }: IProps) {
   // console.log(tmp)
 
   if (!data) return null
-  if (data.length === 0) return <div>검색 결과가 없습니다.</div>
+  if (data.length === 0) return <div className={styles.errMsg}>검색 결과가 없습니다.</div>
   return (
     <ul>
       {data.map((item, index: number) => (

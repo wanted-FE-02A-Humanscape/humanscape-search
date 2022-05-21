@@ -14,6 +14,7 @@ export default function RecommendWrap({ isMoblie, value }: IProps) {
   return (
     <div className={cx(styles.wrapper, { [styles.modal]: isMoblie })}>
       <Suspense fallback={<div className={styles.loading}>검색 중...</div>}>
+        <h3>추천 검색어</h3>
         <Recommend value={value} />
       </Suspense>
     </div>

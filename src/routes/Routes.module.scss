@@ -15,7 +15,19 @@
     font-weight: bolder;
 
     h1 {
-      padding: 10px 0;
+      width: 400px;
+      font-size: 2.125rem;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+      letter-spacing: -0.018em;
+      white-space: pre-wrap;
+      @media screen and (max-width: 1040px) {
+        width: 230px;
+        margin-bottom: 20px;
+        font-size: 1.25rem;
+        text-align: center;
+      }
     }
   }
 

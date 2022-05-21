@@ -1,8 +1,13 @@
+@use '/src/styles/mixins/responsive';
+
 .btnBox {
   display: flex;
   justify-content: flex-end;
-  width: 600px;
+  width: 660px;
   margin-bottom: 20px;
+  @include responsive.mobileOnly {
+    width: 90%;
+  }
 
   .icon {
     width: 30px;

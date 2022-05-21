@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useRecoilValue } from 'recoil'
-import { inputValueAtom } from 'recoil/diseaseInfo'
+import { debounceValueAtom } from 'recoil/diseaseInfo'
 
 interface IProp {
   item: IData
@@ -12,17 +12,17 @@ interface IData {
 }
 
 function HighlightedText({ item }: IProp) {
-  const inputVal = useRecoilValue(inputValueAtom)
+  const deboVal = useRecoilValue(debounceValueAtom)
 
   const renderContent = useMemo(() => {
-    const regex = new RegExp(`(${inputVal})`, 'gi')
+    const regex = new RegExp(`(${deboVal})`, 'gi')
     const regexParts = item.sickNm.split(regex)
 
     return regexParts.filter(String).map((part, i) => {
       const key = `splitedText-${i}`
       return regex.test(part) ? <mark key={key}>{part}</mark> : <span key={key}>{part}</span>
     })
-  }, [inputVal, item.sickNm])
+  }, [deboVal, item.sickNm])
 
   return <span>{renderContent}</span>
 }
