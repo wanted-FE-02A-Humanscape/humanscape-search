@@ -1,5 +1,5 @@
 [[redirects]]
 from = "/proxy/*"
-  to = "http://apis.data.go.kr"  
+  to = "http://apis.data.go.kr/B551182/diseaseInfoService/getDissNameCodeList"  
   status = 200
   force = true
