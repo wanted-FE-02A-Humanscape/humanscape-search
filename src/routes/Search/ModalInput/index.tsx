@@ -1,7 +1,7 @@
 import { Dispatch, FormEvent, SetStateAction } from 'react'
 import { SearchIcon, ArrowIcon } from 'assets/svgs'
 
-import InputComponent from 'components/commonInput'
+import InputComponent from 'components/CommonInput'
 
 import styles from './ModalInput.module.scss'
 

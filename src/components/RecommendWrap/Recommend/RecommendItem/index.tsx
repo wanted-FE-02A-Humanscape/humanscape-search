@@ -1,8 +1,8 @@
-import { ChangeEvent, useEffect, useState } from 'react'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 
 import { SearchIcon } from 'assets/svgs'
-import { focusedIdxAtom, inputValueAtom } from 'recoil/diseaseInfo'
+import { focusedIdxAtom, inputValueAtom, itemsLengthAtom } from 'recoil/diseaseInfo'
 
 import HighlightedText from 'components/HighlightedText'
 
@@ -22,16 +22,20 @@ export default function RecommendItem({ item, index }: IProps) {
   const [checked, setChecked] = useState(false)
   const [focusedIdx, setFocusedIdx] = useRecoilState(focusedIdxAtom)
   const setInputVal = useSetRecoilState(inputValueAtom)
+  const itemsLength = useRecoilValue(itemsLengthAtom)
+  const scrollRef = useRef<HTMLInputElement>(null)
 
-  // 키보드 이동으로 검색창 반영
+  // 키보드 스크롤 및 검색창 input에 반영
   useEffect(() => {
     if (focusedIdx === index) {
       setChecked(true)
       setFocusedIdx(index)
       setInputVal(item.sickNm)
+      if (scrollRef.current) {
+        scrollRef.current.scrollIntoView(false)
+      }
     } else setChecked(false)
-  }, [focusedIdx, index, item.sickNm, setFocusedIdx, setInputVal])
-
+  }, [focusedIdx, index, item.sickNm, setFocusedIdx, setInputVal, itemsLength])
   // 클릭으로 검색창 반영
   const handleItemChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFocusedIdx(index)
@@ -42,6 +46,7 @@ export default function RecommendItem({ item, index }: IProps) {
     <li className={styles.wrapper}>
       <label>
         <input
+          ref={scrollRef}
           type='radio'
           name='autocompletedKeyword'
           value={item.sickNm}
