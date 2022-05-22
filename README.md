@@ -3,12 +3,10 @@
 
 팀원 : 김준엽, 김항래, 박혜민, 민경미, 지창근  
 개발기간 : 22/05/19 ~ 22/05/21  
-배포 URL : https://tiny-selkie-b2eb5d.netlify.app/
-스크린샷:
-![search_and_keyboard_select](https://user-images.githubusercontent.com/97211582/169679773-12221e25-7e14-42bf-894c-f920b4aba2ee.gif)
-![settings](https://user-images.githubusercontent.com/97211582/169679774-2db3a31f-febd-4d99-ad9d-81844f4f7e41.gif)
-![mobile](https://user-images.githubusercontent.com/97211582/169679775-edca6ad9-4238-4a02-8d1c-c0214c6532d9.gif)
-![API COUNT](https://user-images.githubusercontent.com/97211582/169679776-fd9ada63-823e-4588-b477-54fac2e2ab50.gif)
+배포 URL : https://tiny-selkie-b2eb5d.netlify.app/ 
+
+스크린샷: <br>
+  <img src='https://user-images.githubusercontent.com/97211582/169679773-12221e25-7e14-42bf-894c-f920b4aba2ee.gif'>
 
 
 <br />
