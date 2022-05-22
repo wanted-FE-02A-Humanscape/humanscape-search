@@ -1,8 +1,8 @@
-import { ChangeEvent, useEffect, useState } from 'react'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 
 import { SearchIcon } from 'assets/svgs'
-import { focusedIdxAtom, inputValueAtom } from 'recoil/diseaseInfo'
+import { focusedIdxAtom, inputValueAtom, itemsLengthAtom } from 'recoil/diseaseInfo'
 
 import HighlightedText from 'components/HighlightedText'
 
@@ -36,7 +36,6 @@ export default function RecommendItem({ item, index }: IProps) {
       }
     } else setChecked(false)
   }, [focusedIdx, index, item.sickNm, setFocusedIdx, setInputVal, itemsLength])
-  
   // 클릭으로 검색창 반영
   const handleItemChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFocusedIdx(index)
