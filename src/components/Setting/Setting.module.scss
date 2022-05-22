@@ -9,7 +9,16 @@
     width: 90%;
   }
 
+  button {
+    transition: 0.8s;
+
+    &:hover {
+      transform: scale(1.5) rotate(360deg);
+    }
+  }
+
   .icon {
+    display: block;
     width: 30px;
     height: 30px;
   }

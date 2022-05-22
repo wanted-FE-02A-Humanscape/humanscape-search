@@ -23,7 +23,7 @@ export default function Recommend({ value }: IProps) {
     () =>
       getDiseaseInfoApi({ searchText: value, medTp, sickType }).then((res) => {
         // eslint-disable-next-line no-console
-        console.log('api 호출')
+        console.count('api 호출')
 
         const regex = createFuzzyMatcher(value)
         const dataToSort = res.map((item) => ({

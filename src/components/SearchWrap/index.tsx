@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil'
 import { SearchIcon } from 'assets/svgs'
 import { inputValueAtom } from 'recoil/diseaseInfo'
 
-import InputComponent from 'components/commonInput'
+import InputComponent from 'components/CommonInput'
 
 import styles from './SearchInput.module.scss'
 

@@ -38,37 +38,47 @@ export default function SettingForm({ handleClose }: IProps) {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>추천 검색어 설정</h2>
-      <section>
-        <h3>추천 검색어 최대 개수(숫자만 입력)</h3>
-        <div className={styles.content}>
-          <input type='number' value={maxCnt || ''} onChange={handleChangeCnt} />
-        </div>
-      </section>
-
-      <section>
-        <h3>상병 종류</h3>
-        <div className={styles.content}>
-          <Radio id='sick1' radioName='3단 상병' radioVal={1} value={sickType} handleChange={handleChangeSick} />
-          <Radio id='sick2' radioName='4단 상병' radioVal={2} value={sickType} handleChange={handleChangeSick} />
-        </div>
-      </section>
-
-      <section>
-        <h3>진료 종류</h3>
-        <div className={styles.content}>
-          <Radio id='med1' radioName='한방' radioVal={1} value={medTp} handleChange={handleChangeMed} />
-          <Radio id='med2' radioName='양방(의과)' radioVal={2} value={medTp} handleChange={handleChangeMed} />
-        </div>
-      </section>
-
-      <div className={styles.btnBox}>
-        <button type='submit'>완료</button>
-        <button type='button' onClick={handleClose}>
-          취소
-        </button>
+    <div className={styles.wrapper}>
+      <div className={styles.title}>
+        <h3>추천 검색어 조건 설정</h3>
       </div>
-    </form>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <section>
+          <h3>추천 검색어 개수</h3>
+          <div className={styles.content}>
+            <input
+              type='text'
+              pattern='[1-9]|10'
+              title='1~10까지만 입력가능합니다.'
+              value={maxCnt || ''}
+              onChange={handleChangeCnt}
+            />
+          </div>
+        </section>
+
+        <section>
+          <h3>상병 종류</h3>
+          <div className={styles.content}>
+            <Radio id='sick1' radioName='3단 상병' radioVal={1} value={sickType} handleChange={handleChangeSick} />
+            <Radio id='sick2' radioName='4단 상병' radioVal={2} value={sickType} handleChange={handleChangeSick} />
+          </div>
+        </section>
+
+        <section>
+          <h3>진료 종류</h3>
+          <div className={styles.content}>
+            <Radio id='med1' radioName='한방' radioVal={1} value={medTp} handleChange={handleChangeMed} />
+            <Radio id='med2' radioName='양방(의과)' radioVal={2} value={medTp} handleChange={handleChangeMed} />
+          </div>
+        </section>
+
+        <div className={styles.btnBox}>
+          <button type='submit'>완료</button>
+          <button type='button' onClick={handleClose}>
+            취소
+          </button>
+        </div>
+      </form>
+    </div>
   )
 }
