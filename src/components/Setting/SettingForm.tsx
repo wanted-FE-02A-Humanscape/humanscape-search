@@ -44,15 +44,9 @@ export default function SettingForm({ handleClose }: IProps) {
       </div>
       <form className={styles.form} onSubmit={handleSubmit}>
         <section>
-          <h3>추천 검색어 개수</h3>
+          <h3>추천 검색어 최대 개수(숫자만 입력)</h3>
           <div className={styles.content}>
-            <input
-              type='text'
-              pattern='[1-9]|10'
-              title='1~10까지만 입력가능합니다.'
-              value={maxCnt || ''}
-              onChange={handleChangeCnt}
-            />
+            <input type='number' value={maxCnt || ''} onChange={handleChangeCnt} />
           </div>
         </section>
 
