@@ -23,12 +23,15 @@ export default function RecommendItem({ item, index }: IProps) {
   const [focusedIdx, setFocusedIdx] = useRecoilState(focusedIdxAtom)
   const setInputVal = useSetRecoilState(inputValueAtom)
 
-  // 키보드 이동으로 검색창 반영
+  // 키보드 스크롤 및 검색창 input에 반영
   useEffect(() => {
     if (focusedIdx === index) {
       setChecked(true)
       setFocusedIdx(index)
       setInputVal(item.sickNm)
+      if (scrollRef.current) {
+        scrollRef.current.scrollIntoView(false)
+      }
     } else setChecked(false)
   }, [focusedIdx, index, item.sickNm, setFocusedIdx, setInputVal])
 
