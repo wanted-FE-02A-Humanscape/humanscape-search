@@ -22,6 +22,7 @@ export default function RecommendItem({ item, index }: IProps) {
   const [checked, setChecked] = useState(false)
   const [focusedIdx, setFocusedIdx] = useRecoilState(focusedIdxAtom)
   const setInputVal = useSetRecoilState(inputValueAtom)
+  const scrollRef = useRef<HTMLInputElement>(null)
 
   // 키보드 스크롤 및 검색창 input에 반영
   useEffect(() => {
@@ -33,8 +34,8 @@ export default function RecommendItem({ item, index }: IProps) {
         scrollRef.current.scrollIntoView(false)
       }
     } else setChecked(false)
-  }, [focusedIdx, index, item.sickNm, setFocusedIdx, setInputVal])
-
+  }, [focusedIdx, index, item.sickNm, setFocusedIdx, setInputVal, itemsLength])
+  
   // 클릭으로 검색창 반영
   const handleItemChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFocusedIdx(index)
@@ -45,6 +46,7 @@ export default function RecommendItem({ item, index }: IProps) {
     <li className={styles.wrapper}>
       <label>
         <input
+          ref={scrollRef}
           type='radio'
           name='autocompletedKeyword'
           value={item.sickNm}
