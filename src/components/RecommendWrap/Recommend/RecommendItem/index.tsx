@@ -22,6 +22,7 @@ export default function RecommendItem({ item, index }: IProps) {
   const [checked, setChecked] = useState(false)
   const [focusedIdx, setFocusedIdx] = useRecoilState(focusedIdxAtom)
   const setInputVal = useSetRecoilState(inputValueAtom)
+  const itemsLength = useRecoilValue(itemsLengthAtom)
   const scrollRef = useRef<HTMLInputElement>(null)
 
   // 키보드 스크롤 및 검색창 input에 반영
